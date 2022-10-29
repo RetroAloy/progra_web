@@ -1,0 +1,171 @@
+extends ./layout/index.pug
+block compartircontenido  
+    // Masthead
+    header.masthead
+        .container.black-text
+            .masthead-subheading ¡Bienvenido a nuestro gestor hotelero!
+            .masthead-heading.text-uppercase Nuestro sitio web oficial para hoteles en Zacatlán
+            a.btn.btn-primary.btn-xl.text-uppercase(href='#services') Comenzar
+
+    // Services
+    section#services.page-section
+        .container
+            .text-center
+                h2.section-heading.text-uppercase Servicios
+                h3.section-subheading.text-muted A continuación se listan los servicios disponibles en este sitio web.
+            .row.text-center
+                .col-md-4
+                    span.fa-stack.fa-4x
+                        img(src="/assets/hotel.png", alt="hotel", width="100px", height="100px")
+                    h4.my-3 Hoteles
+                    p.text-muted
+                    | Gestione sus hoteles con tan solo un clic agregando, editando, buscándolos o eliminándolos.
+                .col-md-4
+                    span.fa-stack.fa-4x 
+                        img(src="/assets/habitacion.png", alt="habitacion", width="100px", height="100px")
+                    h4.my-3 Habitaciones
+                    p.text-muted
+                    | Nunca había sido tan fácil encontrar sus habitaciones, con nuestro sistema los podra editar con tan sólo un clic y no sólo eso, también podrá agregarlos y eliminarlos del sistema.
+                .col-md-4
+                    span.fa-stack.fa-4x
+                        img(src="/assets/persona.png", alt="persona", width="100px", height="100px")
+                    h4.my-3 Gerentes
+                    p.text-muted
+                    | ¿Su personal está creciendo? Con nuestro sistema encontrara fácil editar, agregar y modificar gerentes, asociarlos a hoteles, quitarlos o cambiarlos.
+    // Portfolio Grid
+    section#portfolio.page-section.bg-light
+        .container
+            .text-center
+                h2.section-heading.text-uppercase Herramientas
+                h3.section-subheading.text-muted A continuación se encuentras las herramientas disponibles para gestionar sus hoteles
+            .row
+                .col-lg-4.col-sm-6.mb-4
+                    // Portfolio item 1
+                    .portfolio-item
+                        a.portfolio-link(href='/gestion_hoteles')
+                            .portfolio-hover
+                                .portfolio-hover-content
+                                    i.fas.fa-plus.fa-3x
+                            img.img-fluid(src='assets/img/herramientas/1.png' alt='...')
+                        .portfolio-caption
+                            .portfolio-caption-heading Gestión de Hoteles
+                            .portfolio-caption-subheading.text-muted Administrar sus hoteles jamás había sido tan fácil, con un clic podrá realizar operaciones que antes le llevaba horas.
+                .col-lg-4.col-sm-6.mb-4
+                    // Portfolio item 2
+                    .portfolio-item
+                        a.portfolio-link(href='/gestion_habitaciones')
+                            .portfolio-hover
+                                .portfolio-hover-content
+                                    i.fas.fa-plus.fa-3x
+                            img.img-fluid(src='assets/img/herramientas/2.jpg' alt='...')
+                        .portfolio-caption
+                            .portfolio-caption-heading Gestión de Habitaciones
+                            .portfolio-caption-subheading.text-muted Gracias a nuestro sistema innovador podrá gestionar sus habitaciones en cuestión de segundos.
+                .col-lg-4.col-sm-6.mb-4
+                    // Portfolio item 3
+                    .portfolio-item
+                        a.portfolio-link(data-bs-toggle='modal' href='# ')
+                            .portfolio-hover
+                                .portfolio-hover-content
+                                    i.fas.fa-plus.fa-3x
+                            img.img-fluid(src='assets/img/herramientas/3.jpg' alt='...')
+                        .portfolio-caption
+                            .portfolio-caption-heading Gestión de Gerentes
+                            .portfolio-caption-subheading.text-muted Gestionar a su personal nunca había sido tan sencillo, podrá agregar nuevo personal de gerencia cuando usted lo desee.
+    // Team
+    section#team.page-section
+        .container
+            .text-center
+                h2.section-heading.text-uppercase Nuestro Equipo    
+                h3.section-subheading.text-muted En conjunto, logrando grandes cosas.
+            .row
+                .col-lg-4
+                    .team-member
+                        img.mx-auto.rounded-circle(src='assets/img/team/1.jpg' alt='...')
+                        h4 Ricardo Escarela Morales
+                        p.text-muted Desarrollador Web Jr.
+                        a.btn.btn-dark.btn-social.mx-2(href='#!' aria-label='Ricardo Escarela Morales')
+                            i.fab.fa-twitter
+                        a.btn.btn-dark.btn-social.mx-2(href='https://www.facebook.com/richy.eskar' aria-label='Ricardo Escarela Morales')
+                            i.fab.fa-facebook-f
+                        a.btn.btn-dark.btn-social.mx-2(href='#!' aria-label='Ricardo Escarela Morales')
+                            i.fab.fa-linkedin-in
+                .col-lg-4
+                    .team-member
+                        img.mx-auto.rounded-circle(src='assets/img/team/2.jpg' alt='...')
+                        h4 Bernabé Hernandez Cisneros
+                        p.text-muted Desarrollador Web Jr.
+                        a.btn.btn-dark.btn-social.mx-2(href='#!' aria-label='Bernabé Hernandez Cisneros')
+                            i.fab.fa-twitter
+                        a.btn.btn-dark.btn-social.mx-2(href='https://www.facebook.com/profile.php?id=100013064855116' aria-label='Bernabé Hernandez Cisneros')
+                            i.fab.fa-facebook-f
+                        a.btn.btn-dark.btn-social.mx-2(href='#!' aria-label='Bernabé Hernandez Cisneros')
+                            i.fab.fa-linkedin-in
+                .col-lg-4
+                    .team-member
+                        img.mx-auto.rounded-circle(src='assets/img/team/3.jpg' alt='...')
+                        h4 Nico
+                        p.text-muted Desarrollador Web Jr.
+                        a.btn.btn-dark.btn-social.mx-2(href='#!' aria-label='Larry Parker Twitter Profile')
+                            i.fab.fa-twitter
+                        a.btn.btn-dark.btn-social.mx-2(href='#!' aria-label='Larry Parker Facebook Profile')
+                            i.fab.fa-facebook-f
+                        a.btn.btn-dark.btn-social.mx-2(href='#!' aria-label='Larry Parker LinkedIn Profile')
+                            i.fab.fa-linkedin-in
+            .row
+                .col-lg-8.mx-auto.text-center
+                    p.large.text-muted
+                    | Siempre nos encontramos a la vanguardia de la tecnología mientras innovamos y velamos por la satisfacción de nuestros clientes.
+    // Contact
+    section#contact.page-section
+        .container
+            .text-center
+                h2.section-heading.text-uppercase Contactanos
+                h3.section-subheading.text-muted ¡Somos la mejor opción!
+                // * * * * * * * * * * * * * * *
+                // * * SB Forms Contact Form * *
+                // * * * * * * * * * * * * * * *
+                // This form is pre-integrated with SB Forms.
+                // To make this form functional, sign up at
+                // https://startbootstrap.com/solution/contact-forms
+                // to get an API token!
+            form#contactForm(data-sb-form-api-token='API_TOKEN')
+                .row.align-items-stretch.mb-5
+                    .col-md-6
+                        .form-group
+                            // Name input
+                            input#name.form-control(type='text' placeholder='Tu nombre *' data-sb-validations='required')
+                            .invalid-feedback(data-sb-feedback='name:required') Un nombre es requerido.
+                        .form-group
+                            // Email address input
+                            input#email.form-control(type='email' placeholder='Tu Email *' data-sb-validations='required,email')
+                            .invalid-feedback(data-sb-feedback='email:required') Un correo es requerido.
+                            .invalid-feedback(data-sb-feedback='email:email') El correo es inválido.
+                        .form-group.mb-md-0
+                            // Phone number input
+                            input#phone.form-control(type='tel' placeholder='Tu Teléfono *' data-sb-validations='required')
+                            .invalid-feedback(data-sb-feedback='phone:required') Un número es requerido.
+                    .col-md-6
+                        .form-group.form-group-textarea.mb-md-0
+                            // Message input
+                            textarea#message.form-control(placeholder='Tu mensaje *' data-sb-validations='required')
+                            .invalid-feedback(data-sb-feedback='message:required') Un mensaje es requerido.
+                    // Submit success message
+                    // 
+                    // This is what your users will see when the form
+                    // has successfully submitted
+                #submitSuccessMessage.d-none
+                    .text-center.text-white.mb-3
+                        .fw-bolder ¡Fomulario enviado exitosamente!
+                        |                             To activate this form, sign up at
+                        br
+                        a(href='https://startbootstrap.com/solution/contact-forms') https://startbootstrap.com/solution/contact-forms
+                // Submit error message
+                // 
+                // This is what your users will see when there is
+                // an error submitting the form
+                #submitErrorMessage.d-none
+                    .text-center.text-danger.mb-3 ¡Error enviando mensaje!
+                // Submit Button
+                .text-center
+                    button#submitButton.btn.btn-primary.btn-xl.text-uppercase.disabled(type='submit') Enviar Mensaje

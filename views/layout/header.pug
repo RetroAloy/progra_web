@@ -1,0 +1,23 @@
+// Navigation
+nav#mainNav.navbar.navbar-expand-lg.navbar-dark.fixed-top
+  .container
+    a.navbar-brand(href='#page-top')
+      | Hoteles Zacatlán
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+      | Menu
+      i.fas.fa-bars.ms-1
+    #navbarResponsive.collapse.navbar-collapse
+      if pagina == "Inicio"
+        ul.navbar-nav.text-uppercase.ms-auto.py-4.py-lg-0
+          li.nav-item
+            a.nav-link(href='#services') Servicios
+          li.nav-item
+            a.nav-link(href='#portfolio') Herramientas
+          li.nav-item
+            a.nav-link(href='#team') Developers
+          li.nav-item
+            a.nav-link(href='#contact') Contacto
+      else
+        ul.navbar-nav.text-uppercase.ms-auto.py-4.py-lg-0
+          li.nav-item
+            a.nav-link(href='/') Inicio

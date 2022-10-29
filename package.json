@@ -1,0 +1,23 @@
+{
+  "name": "proyecto_final",
+  "version": "1.0.0",
+  "description": "Proyecto Final",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "type": "module",
+  "author": "Ricardo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mariadb": "^3.0.1",
+    "pug": "^3.0.2",
+    "require": "^2.4.20",
+    "sequelize": "^6.23.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
+

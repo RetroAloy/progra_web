@@ -1,0 +1,30 @@
+extends ./layout/Index.pug 
+block compartircontenido
+    .p-4
+    center.h1 #{pagina}
+    .p-4
+    section
+      .container
+          .row
+            each gerente in gerentes
+              
+              .col-md.col-lg-4.nv-4
+                .image-flip
+                  .mainflip.flip-0
+                    .frontside
+                      .card
+                        .card-body.text-center
+                          p
+                            h2.card.title #{gerente.id_grt}
+                            h4.card-title #{gerente.hotele.nombre}
+                          h4.card-title #{gerente.nombre}
+                    .backside
+                      .card
+                        .card-body.text-center
+                          h4.card-title #{gerente.ap_paterno}
+                          h4.card-title #{gerente.ap_materno}
+                          p.card-text
+                            | #{gerente.telefono}
+                a(href=`/modificar?id=${gerente.id_grt}`,class='btn btn-success btn-clock') Modificar
+                | 
+                a(href=`/eliminar?id=${gerente.id_grt}`,class='btn btn-danger btn-clock') Eliminar

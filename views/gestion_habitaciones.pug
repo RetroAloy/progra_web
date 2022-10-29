@@ -1,0 +1,71 @@
+extends ./layout/index.pug
+block compartircontenido
+    // Masthead
+    header.masthead
+        .container.black-text
+            .masthead-subheading Bienvenido
+            .masthead-heading.text-uppercase Aquí podrá agregar habitaciones a hoteles ya registrados
+            a.btn.btn-primary.btn-xl.text-uppercase(href='#options') Comenzar
+
+    //Opciones
+    section#services.page-section
+        #options.container
+            .text-center
+                h2.section-heading.text-uppercase Opciones
+                h3.section-subheading.text-muted A continuación se listan los servicios disponibles en este sitio web.
+            #accordion
+                .card
+                    #headingOne.card-header
+                        h5.mb-0
+                            button.btn.btn-link(data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne') Registrar Nuevo Hotel
+                    #collapseOne.collapse.show(aria-labelledby='headingOne' data-parent='#accordion')
+                        .card-body
+                            | A continuación se encuentra el formulario para agregar un nuevo hotel.
+                            form.needs-validation(action = "/registrarHabitaciones", method="POST")
+                                .mb-4 
+                                    input(type="hidden" id="id_hbt" name="id_hbt" value=id_hbt)
+
+                                .mb-4
+                                    label.form-label(for="piso") Piso
+                                    input.form-control(type="text", value = piso,name="piso",placeholder="Piso de la habitación" , maxlength="10", required)
+                                    span#pisoHelpInline.form-text
+                                    | Debe de ser de 1 a 10 números y/o caracteres.
+
+                                .mb-4
+                                    label.form-label(for="nombre") Nombre
+                                    input.form-control(type="text", value = nombre, name="nombre",placeholder="Nombre", required)
+
+                                .mb-4
+                                    label.form-label(for="toggle-refrigerador") Refrigerador
+                                label.switch
+                                    input#togBtn(type="checkbox", name="toggle-refigerador" value="Refrigerador")
+                                    input#refri(type="hidden", min=0, max=1, onkeydown="return false;", value = refrigerador,name="refrigerador",placeholder="Tiene = 1, No tiene = 0", maxlength="1",onkeypress="return (event.charCode >= 48 && event.charCode <= 57)")
+
+                                if hotel_actual
+                                    .mb-4
+                                        label.form-label(for="hotel-actual") Hotel Actual 
+                                        input.form-control(type="text", value=`${hotel_actual.nombre}`, readonly)
+                                
+                                .mb-4
+                                    label.form-label(for='hotel') Hotel Perteneciente:    
+                                        select#hoteles.form-select(name="id_htl")
+                                            //each hotel in hoteles 
+                                                option(value=`${hotel.id_htl}`)=`${hotel.nombre}` 
+                                            
+                                    br
+                                    span ¿No conoces cual es su hotel?
+                                    |
+                                    a(href="/consultarHoteles")  Consultalo aquí
+                                .mb-4.d-grid
+                                    button.btn.btn-primary.btn-block(type="submit", id="btn_enviar") Enviar información
+
+
+                .card
+                    #headingTwo.card-header
+                        h5.mb-0
+                            button.btn.btn-link.collapsed(data-toggle='collapse' data-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo') Consultar hoteles
+                    #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordion')
+                        .card-body
+                            | ¡Puede consultar la lista de hoteles que tiene disponible! Así mismo puede elegir modificarlo o eliminarlo.
+                            .mb-4.d-grid
+                                a.btn.btn-info.btn-block(href='/' role='button') Ver Hoteles Registrados

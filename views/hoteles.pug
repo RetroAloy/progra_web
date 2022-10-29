@@ -1,0 +1,29 @@
+extends ./layout/Index.pug 
+block compartircontenido
+    .p-4
+    center.h1 #{pagina}
+    .p-4
+    section
+      .container
+          .row
+            each hotel in hoteles
+              
+              .col-md.col-lg-4.nv-4
+                .image-flip
+                  .mainflip.flip-0
+                    .frontside
+                      .card
+                        .card-body.text-center
+                          p
+                            h2.card.title #{hotel.id_htl}
+                          h4.card-title #{hotel.nombre}
+                    .backside
+                      .card
+                        .card-body.text-center
+                          h4.card-title #{hotel.direccion}
+                          h4.card-title #{hotel.telefono}
+                          p.card-text
+                            | #{hotel.correo}
+                a(href=`/modificar?id=${hotel.id_htl}`,class='btn btn-success btn-clock') Modificar
+                | 
+                a(href=`/eliminar?id=${hotel.id_htl}`,class='btn btn-danger btn-clock') Eliminar

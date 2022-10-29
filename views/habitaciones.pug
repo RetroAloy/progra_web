@@ -1,0 +1,29 @@
+extends ./layout/Index.pug 
+block compartircontenido
+    .p-4
+    center.h1 #{pagina}
+    .p-4
+    section
+      .container
+          .row
+            each habitacion in habitaciones 
+              
+              .col-md.col-lg-4.nv-4
+                .image-flip
+                  .mainflip.flip-0
+                    .frontside
+                      .card
+                        .card-body.text-center
+                          p
+                            h2.card.title #{habitacion.id_hbt}
+                            h4.card-title #{habitacion.hotele.nombre}
+                          h4.card-title #{habitacion.piso}
+                    .backside
+                      .card
+                        .card-body.text-center
+                          h4.card-title #{habitacion.nombre}
+                          h4.card-title #{habitacion.refrigerador}
+                          //p.card-text| #{gerente.telefono}
+                a(href=`/modificar?id=${habitacion.id_hbt}`,class='btn btn-success btn-clock') Modificar
+                | 
+                a(href=`/eliminar?id=${habitacion.id_hbt}`,class='btn btn-danger btn-clock') Eliminar
