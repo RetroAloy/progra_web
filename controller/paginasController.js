@@ -17,15 +17,12 @@ const paginaGerente = (req,res) => {
     });
 }
 
-const paginaGestionHoteles = (req,res) => {
-    res.render("gestion_hoteles", {
-        pagina: "Gestion de Hoteles",
-    });
-}
 
-const paginaGestionHabitaciones = (req, res) => {
-    res.render("gestion_habitaciones", {
-        pagina: "Gestion de Habitaciones",
+
+
+const paginaGestionGerentes = (req, res) => {
+    res.render("gestion_gerentes", {
+        pagina: "Gestión de Gerentes"
     });
 }
 
@@ -34,6 +31,5 @@ export{
     paginaInicio,
     paginaHotel,
     paginaGerente,
-    paginaGestionHoteles,
-    paginaGestionHabitaciones
+    paginaGestionGerentes
 }

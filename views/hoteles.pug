@@ -1,29 +1,34 @@
-extends ./layout/Index.pug 
+extends ./layout/index.pug 
 block compartircontenido
-    .p-4
-    center.h1 #{pagina}
-    .p-4
-    section
-      .container
-          .row
-            each hotel in hoteles
-              
-              .col-md.col-lg-4.nv-4
-                .image-flip
-                  .mainflip.flip-0
-                    .frontside
-                      .card
-                        .card-body.text-center
-                          p
-                            h2.card.title #{hotel.id_htl}
-                          h4.card-title #{hotel.nombre}
-                    .backside
-                      .card
-                        .card-body.text-center
-                          h4.card-title #{hotel.direccion}
-                          h4.card-title #{hotel.telefono}
-                          p.card-text
-                            | #{hotel.correo}
-                a(href=`/modificar?id=${hotel.id_htl}`,class='btn btn-success btn-clock') Modificar
-                | 
-                a(href=`/eliminar?id=${hotel.id_htl}`,class='btn btn-danger btn-clock') Eliminar
+    // Masthead
+    header.masthead
+        .container.black-text
+            .masthead-subheading Bienvenido
+            .masthead-heading.text-uppercase Aquí podrá consultar la lista de hoteles registrados 
+            a.btn.btn-primary.btn-xl.text-uppercase(href='#options') Comenzar
+    
+    //Opciones
+    section#services.page-section
+      #options.container.mt-5.justify-content-center
+        h1.text-center.mt-5 #{pagina}  
+        if hoteles                                    
+            table#myTable.table-responsive.table.table-light.table-hovers
+                thead
+                    tr
+                        th Nombre
+                        th Dirección
+                        th Telefono 
+                        th Correo
+                        th Acciones
+
+                each hotel in hoteles
+                    tbody
+                        tr
+                            td #{hotel.nombre}
+                            td #{hotel.direccion}
+                            td #{hotel.telefono}
+                            td #{hotel.correo}
+                            td 
+                                a.btn.btn-outline-warning(href=`/modificar_hoteles?id=${hotel.id_htl}`) Modificar
+                                br 
+                                a.btn.btn-outline-danger(href=`/eliminar_hoteles?id=${hotel.id_htl}`) Eliminar

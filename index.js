@@ -1,7 +1,7 @@
 import  express  from "express";
 import rutas from "./rutas/index.js"
 import db from "./config/db.js";
-import {relacionHotelGerente, relacionHotelHabitacion} from "./config/relaciones.js"
+import {relacionHotelGerente, relacionHotelHabitaciones} from "./config/relaciones.js"
 
 const app = express();
 
@@ -11,7 +11,7 @@ db.authenticate()
 .catch(error => console.log(error));
 
 relacionHotelGerente();
-relacionHotelHabitacion();
+relacionHotelHabitaciones();
 
 //Definiendo puerto
 const port = process.env.PORT || 1800;

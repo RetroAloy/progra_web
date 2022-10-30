@@ -1,30 +1,36 @@
-extends ./layout/Index.pug 
+extends ./layout/index.pug 
 block compartircontenido
-    .p-4
-    center.h1 #{pagina}
-    .p-4
-    section
-      .container
-          .row
-            each gerente in gerentes
-              
-              .col-md.col-lg-4.nv-4
-                .image-flip
-                  .mainflip.flip-0
-                    .frontside
-                      .card
-                        .card-body.text-center
-                          p
-                            h2.card.title #{gerente.id_grt}
-                            h4.card-title #{gerente.hotele.nombre}
-                          h4.card-title #{gerente.nombre}
-                    .backside
-                      .card
-                        .card-body.text-center
-                          h4.card-title #{gerente.ap_paterno}
-                          h4.card-title #{gerente.ap_materno}
-                          p.card-text
-                            | #{gerente.telefono}
-                a(href=`/modificar?id=${gerente.id_grt}`,class='btn btn-success btn-clock') Modificar
-                | 
-                a(href=`/eliminar?id=${gerente.id_grt}`,class='btn btn-danger btn-clock') Eliminar
+    // Masthead
+    header.masthead
+        .container.black-text
+            .masthead-subheading Bienvenido
+            .masthead-heading.text-uppercase Aquí podrá consultar la lista de gerentes registrados 
+            a.btn.btn-primary.btn-xl.text-uppercase(href='#options') Comenzar
+    
+    //Opciones
+    section#services.page-section
+      #options.container.mt-5.justify-content-center
+        h1.text-center.mt-5 #{pagina}  
+        if gerentes                                   
+            table#myTable.table-responsive.table.table-light.table-hovers
+                thead
+                    tr
+                        th Nombre
+                        th Apellido Paterno
+                        th Apellido Materno
+                        th Teléfono
+                        th Hotel Asociado
+                        th Acciones
+
+                each gerente in gerentes
+                    tbody
+                        tr
+                            td #{gerente.nombre}
+                            td #{gerente.ap_paterno}
+                            td #{gerente.ap_materno}
+                            td #{gerente.telefono}
+                            td #{gerente.hotele ? gerente.hotele.nombre : "Sin hotel asociado"}
+                            td 
+                                a.btn.btn-outline-warning(href=`/modificar_gerentes?id=${gerente.id_grt}`) Modificar
+                                br 
+                                a.btn.btn-outline-danger(href=`/eliminar_gerentes?id=${gerente.id_grt}`) Eliminar

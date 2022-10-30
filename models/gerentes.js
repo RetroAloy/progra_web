@@ -7,9 +7,6 @@ export const Gerentes = db.define('gerentes',{
         autoIncrement: true,
         primaryKey: true
     },
-    id_htl:{
-        type:Sequelize.INTEGER
-    },
     nombre:{
         type:Sequelize.STRING
     },
@@ -21,5 +18,5 @@ export const Gerentes = db.define('gerentes',{
     },
     telefono:{
         type:Sequelize.STRING
-    },
-}, {timestamps:false});
+    }
+}, {timestamps:false}); 

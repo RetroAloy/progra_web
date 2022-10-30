@@ -1,0 +1,63 @@
+extends ./layout/index.pug
+block compartircontenido
+    // Masthead
+    header.masthead
+        .container.black-text
+            .masthead-subheading Bienvenido
+            .masthead-heading.text-uppercase Aquí podrá registrar gerentes o consultarlos
+            a.btn.btn-primary.btn-xl.text-uppercase(href='#options') Comenzar
+
+    //Opciones
+    section#services.page-section
+        #options.container
+            .text-center
+                h2.section-heading.text-uppercase Opciones
+                h3.section-subheading.text-muted A continuación se listan los servicios disponibles en este sitio web.
+            #accordion
+                .card
+                    #headingOne.card-header
+                        h5.mb-0
+                            button.btn.btn-link(data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne') Registrar Nuevo Gerente
+                    #collapseOne.collapse.show(aria-labelledby='headingOne' data-parent='#accordion')
+                        .card-body
+                            | A continuación se encuentra el formulario para agregar un nuevo gerente.
+                            form.needs-validation(action = "/gestion_gerentes", method="POST")
+                                .mb-4 
+                                    input(type="hidden" id="id_grt" name="id_grt" value=id_grt)
+
+                                .mb-4
+                                    label.form-label(for="nombre") Nombre
+                                    input.form-control(type="text", value = nombre,name="nombre",placeholder="Nombre" , maxlength="40", required)
+                                    span#nombreHelpInline.form-text
+                                    | Debe de ser un nombre válido. Es decir sin numeros o caracteres especiales. No exceder 40 caracteres.
+
+                                .mb-4
+                                    label.form-label(for="ap_paterno") Apellido Paterno
+                                    input.form-control(type="text", value = ap_paterno, name="ap_paterno",placeholder="Apellido Paterno", required)
+
+                                .mb-4
+                                    label.form-label(for="ap_materno") Apellido Materno
+                                    input.form-control(type="text", value = ap_materno, name="ap_materno",placeholder="Apellido Materno", required)
+                                    
+                                if hotel_actual
+                                    .mb-4
+                                        label.form-label(for="hotel-actual") Hotel Actual 
+                                        input.form-control(type="text", value=`${hotel_actual.nombre}`, readonly)
+                                
+                                .mb-4
+                                    label.form-label(for='hotel') Teléfono   
+                                    input.form-control(type="text", value = telefono, name="telefono",placeholder="Telefono", required)
+
+                                .mb-4.d-grid
+                                    button.btn.btn-primary.btn-block(type="submit", id="btn_enviar") Enviar información
+
+
+                .card
+                    #headingTwo.card-header
+                        h5.mb-0
+                            button.btn.btn-link.collapsed(data-toggle='collapse' data-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo') Consultar gerentes
+                    #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordion')
+                        .card-body
+                            | ¡Puede consultar la lista de gerentes que tiene disponible! Así mismo puede elegir modificarlo o eliminarlo.
+                            .mb-4.d-grid
+                                a.btn.btn-info.btn-block(href='/gerentes' role='button') Ver Gerentes Registrados

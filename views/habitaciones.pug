@@ -1,29 +1,34 @@
-extends ./layout/Index.pug 
+extends ./layout/index.pug 
 block compartircontenido
-    .p-4
-    center.h1 #{pagina}
-    .p-4
-    section
-      .container
-          .row
-            each habitacion in habitaciones 
-              
-              .col-md.col-lg-4.nv-4
-                .image-flip
-                  .mainflip.flip-0
-                    .frontside
-                      .card
-                        .card-body.text-center
-                          p
-                            h2.card.title #{habitacion.id_hbt}
-                            h4.card-title #{habitacion.hotele.nombre}
-                          h4.card-title #{habitacion.piso}
-                    .backside
-                      .card
-                        .card-body.text-center
-                          h4.card-title #{habitacion.nombre}
-                          h4.card-title #{habitacion.refrigerador}
-                          //p.card-text| #{gerente.telefono}
-                a(href=`/modificar?id=${habitacion.id_hbt}`,class='btn btn-success btn-clock') Modificar
-                | 
-                a(href=`/eliminar?id=${habitacion.id_hbt}`,class='btn btn-danger btn-clock') Eliminar
+    // Masthead
+    header.masthead
+      .container.black-text
+          .masthead-subheading Bienvenido
+          .masthead-heading.text-uppercase Aquí podrá consultar la lista de habitaciones registrados 
+          a.btn.btn-primary.btn-xl.text-uppercase(href='#options') Comenzar
+    
+    //Opciones
+    section#services.page-section
+      #options.container.mt-5.justify-content-center
+          h1.text-center.mt-5 #{pagina}  
+          if habitaciones                                    
+              table#myTable.table-responsive.table.table-light.table-hovers
+                  thead
+                      tr
+                          th Piso
+                          th Nombre
+                          th Refrigerador 
+                          th Hotel Asociado
+                          th Acciones
+
+                  each habitacion in habitaciones
+                      tbody
+                          tr
+                              td #{habitacion.piso}
+                              td #{habitacion.nombre}
+                              td #{habitacion.refrigerador ? "Sí" : "No"}
+                              td #{habitacion.hotele.nombre}
+                              td 
+                                  a.btn.btn-outline-warning(href=`/modificar_habitaciones?id=${habitacion.id_hbt}`) Modificar
+                                  br 
+                                  a.btn.btn-outline-danger(href=`/eliminar_habitaciones?id=${habitacion.id_hbt}`) Eliminar

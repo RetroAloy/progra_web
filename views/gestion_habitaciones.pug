@@ -17,11 +17,11 @@ block compartircontenido
                 .card
                     #headingOne.card-header
                         h5.mb-0
-                            button.btn.btn-link(data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne') Registrar Nuevo Hotel
+                            button.btn.btn-link(data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne') Registrar Nueva Habitación
                     #collapseOne.collapse.show(aria-labelledby='headingOne' data-parent='#accordion')
                         .card-body
                             | A continuación se encuentra el formulario para agregar un nuevo hotel.
-                            form.needs-validation(action = "/registrarHabitaciones", method="POST")
+                            form.needs-validation(action = "/gestion_habitaciones", method="POST")
                                 .mb-4 
                                     input(type="hidden" id="id_hbt" name="id_hbt" value=id_hbt)
 
@@ -35,27 +35,22 @@ block compartircontenido
                                     label.form-label(for="nombre") Nombre
                                     input.form-control(type="text", value = nombre, name="nombre",placeholder="Nombre", required)
 
-                                .mb-4
-                                    label.form-label(for="toggle-refrigerador") Refrigerador
-                                label.switch
-                                    input#togBtn(type="checkbox", name="toggle-refigerador" value="Refrigerador")
-                                    input#refri(type="hidden", min=0, max=1, onkeydown="return false;", value = refrigerador,name="refrigerador",placeholder="Tiene = 1, No tiene = 0", maxlength="1",onkeypress="return (event.charCode >= 48 && event.charCode <= 57)")
+                                .mb-4.form-check
+                                    input.form-check-input(type="checkbox", name="refrigerador", value="1")
+                                    label.form-label(for="refrigerador") Con Refrigerador.
 
                                 if hotel_actual
                                     .mb-4
                                         label.form-label(for="hotel-actual") Hotel Actual 
-                                        input.form-control(type="text", value=`${hotel_actual.nombre}`, readonly)
+                                        input.form-control(type="text", value=`${hotel_actual.nombre}`, readonly) 
                                 
-                                .mb-4
-                                    label.form-label(for='hotel') Hotel Perteneciente:    
-                                        select#hoteles.form-select(name="id_htl")
-                                            //each hotel in hoteles 
-                                                option(value=`${hotel.id_htl}`)=`${hotel.nombre}` 
-                                            
-                                    br
-                                    span ¿No conoces cual es su hotel?
-                                    |
-                                    a(href="/consultarHoteles")  Consultalo aquí
+                                if hoteles    
+                                    .mb-4
+                                        label.form-label(for='hotel') Hotel Perteneciente:    
+                                            select#hoteles.form-select(name="id_htl")
+                                                each hotel in hoteles 
+                                                    option(value=`${hotel.id_htl}`)=`${hotel.nombre}` 
+                                                
                                 .mb-4.d-grid
                                     button.btn.btn-primary.btn-block(type="submit", id="btn_enviar") Enviar información
 
@@ -63,9 +58,9 @@ block compartircontenido
                 .card
                     #headingTwo.card-header
                         h5.mb-0
-                            button.btn.btn-link.collapsed(data-toggle='collapse' data-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo') Consultar hoteles
+                            button.btn.btn-link.collapsed(data-toggle='collapse' data-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo') Consultar habitaciones
                     #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordion')
                         .card-body
-                            | ¡Puede consultar la lista de hoteles que tiene disponible! Así mismo puede elegir modificarlo o eliminarlo.
+                            | ¡Puede consultar la lista de habitaciones que tiene disponible! Así mismo puede elegir modificarlo o eliminarlo.
                             .mb-4.d-grid
-                                a.btn.btn-info.btn-block(href='/' role='button') Ver Hoteles Registrados
+                                a.btn.btn-info.btn-block(href='/habitaciones' role='button') Ver Habitaciones  Registrados

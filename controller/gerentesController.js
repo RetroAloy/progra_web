@@ -1,15 +1,12 @@
 import { Gerentes } from "../models/gerentes.js";
 import { Hoteles } from "../models/hoteles.js";
 
-const AgregarGerentes = async (req, res) => {
-    const { id_grt, id_htl, nombre, ap_paterno, ap_materno, telefono } = req.body;
+const guardarGerentes = async (req, res) => {
+    const { id_grt, nombre, ap_paterno, ap_materno, telefono } = req.body;
     const errores = [];
 
     console.log(req.body);
 
-    if (id_htl === undefined) {
-        errores.push({ mensaje: "El hotel no debe ser vacio" });
-    }
     if (nombre.trim() === "") {
         errores.push({ mensaje: "El nombre no debe ser vacio" });
     }
@@ -24,48 +21,105 @@ const AgregarGerentes = async (req, res) => {
     }
 
     if (errores.length > 0) {
-        res.render("agregar_gerentes", {
+        res.render("gestion_gerentes", {
             pagina: "Gerentes",
             errores,
-            id_htl,
             nombre,
             ap_paterno,
             ap_materno,
             telefono
         });
     } else {
-        //almacenar en la base de datos
-        try {
-            await Gerentes.create({
-                id_htl,
-                nombre,
-                ap_paterno,
-                ap_materno,
-                telefono
-            });
-            res.redirect('/gerentes');
-        } catch (error) {
-            console.log(error);
+        console.log(id_grt);
+        if(id_grt > 0){
+            //Actualizar
+            console.log("actualizar");
+            try {
+                await Gerentes.update({
+                    nombre, 
+                    ap_paterno,
+                    ap_materno,
+                    telefono
+                },{where: {id_grt}});
+                res.redirect('/gerentes');
+            }   catch(error) {
+                console.log(error);
+            }
+        }else{
+            //almacenar en la base de datos
+            try {
+                await Gerentes.create({
+                    id_htl,
+                    nombre,
+                    ap_paterno,
+                    ap_materno,
+                    telefono
+                });
+                res.redirect('/gerentes');
+            } catch (error) {
+                console.log(error);
+            }
         }
+        
     }
 };
 
 const paginaGerentes=async (req, res) =>{
     //obtener registros
     const gerentes = await Gerentes.findAll({
-        //atributes: ['id_htl', 'nombre', 'ap_paterno' , 'ap_materno', 'telefono'],
         include :{
             model:Hoteles
         }
     });
 
+    console.log(gerentes[0].hotele)
+
     res.render("gerentes", {
         pagina: "Gerentes",
-        gerentes: gerentes
+        gerentes
     });
+};
+
+
+const modificarGerentes = async (req, res) =>{
+    console.log('Listo '+ req.query.id)
+    try {
+      const gerente = await Gerentes.findByPk(req.query.id);
+
+      res.render("gestion_gerentes",{
+        pagina: "Gestión de Gerentes",
+        id_grt:         gerente.id_grt,
+        nombre:           gerente.nombre,
+        ap_paterno:         gerente.ap_paterno,
+        ap_materno:   gerente.ap_materno,
+        telefono: gerente.telefono
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+const eliminarGerentes = async (req, res) => {
+    console.log('Listo para borrar ' + req.query.id);
+        //Eliminar en la base de datos
+        try {
+            await Gerentes.destroy({
+                where: {
+                        id_grt: req.query.id,
+                }
+            }
+        );
+            res.redirect("/gerentes");
+        }   catch(error) {
+            console.log(error);
+        }
+    
 };
 
 export{
     paginaGerentes,
-    AgregarGerentes
+    guardarGerentes,
+    modificarGerentes,
+    eliminarGerentes
 }

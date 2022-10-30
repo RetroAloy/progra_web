@@ -21,15 +21,13 @@ block compartircontenido
                     #collapseOne.collapse.show(aria-labelledby='headingOne' data-parent='#accordion')
                         .card-body
                             | A continuación se encuentra el formulario para agregar un nuevo hotel.
-                            form.needs-validation(action = "/registrarHoteles", method="POST")
+                            form.needs-validation(action = "/gestion_hoteles", method="POST")
                                 .mb-4 
                                     input(type="hidden" id="id_htl" name="id_htl" value=id_htl)
                                 .mb-4 
                                     label.form-label(for="nombre") Nombre
                                     input.form-control(type="text",value=nombre, name="nombre",placeholder="Nombre del Hotel...", required)
-                                    span ¿Quiere modificar un hotel ya existente?
-                                    |
-                                    a(href="/consultarHoteles")  Modifíquelo Aquí
+
                                 .mb-4
                                     label.form-label(for="direccion") Dirección
                                     input.form-control(type="text", value=direccion,name="direccion",placeholder="Dirección del Hotel...", required)
@@ -52,17 +50,9 @@ block compartircontenido
                                 .mb-4
                                     label.form-label(for='gerente') Gerente    
                                         select#gerentes.form-select(name="id_grt",value=id_grt)
-                                            //each gerente in gerentes
+                                            each gerente in gerentes
                                                 option(value=`${gerente.id_grt}`)=`${gerente.nombre} ${gerente.ap_paterno} ${gerente.ap_materno}` 
-                                    br
-                                    span ¿No sabes quien es tu gerente?
-                                    |
-                                    a(href="/gerentes")  Consultalo aquí
-                                    br
-                                    span ¿No aparece tu gerente?
-                                    |
-                                    a(href="/gerentes")  Agregalo aquí
-                                .mb-4.d-grid
+                                    
                                     button.btn.btn-primary.btn-block(type="submit", id="btn_enviar") Enviar información
 
 
@@ -74,4 +64,4 @@ block compartircontenido
                         .card-body
                             | ¡Puede consultar la lista de hoteles que tiene disponible! Así mismo puede elegir modificarlo o eliminarlo.
                             .mb-4.d-grid
-                                a.btn.btn-info.btn-block(href='/' role='button') Ver Hoteles Registrados
+                                a.btn.btn-info.btn-block(href='/hoteles' role='button') Ver Hoteles Registrados

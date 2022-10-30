@@ -1,18 +1,34 @@
 import  express  from "express";
-import { AgregarGerentes, paginaGerentes } from "../controller/gerentesController.js";
-import { paginaHabitaciones } from "../controller/habitacionesController.js";
-import { agregarHoteles, paginaHoteles } from "../controller/hotelesController.js";
-import { paginaGerente, paginaGestionHabitaciones, paginaGestionHoteles, paginaHotel, paginaInicio } from "../controller/paginasController.js";
+import { eliminarGerentes, guardarGerentes, modificarGerentes, paginaGerentes } from "../controller/gerentesController.js";
+import { eliminarHabitaciones, guardarHabitaciones, modificarHabitaciones, paginaGestionHabitaciones, paginaHabitaciones } from "../controller/habitacionesController.js";
+import { agregarHoteles, eliminarHoteles, modificarHoteles, mostrarHoteles, paginaGestionHoteles } from "../controller/hotelesController.js";
+import { paginaGerente, paginaGestionGerentes, paginaHotel, paginaInicio } from "../controller/paginasController.js";
 const rutas = express.Router();
 rutas.get("/", paginaInicio);
-rutas.get("/hoteles", paginaHoteles);
+
+//Listar
+rutas.get("/hoteles", mostrarHoteles);
 rutas.get("/gerentes",paginaGerentes);
 rutas.get("/habitaciones", paginaHabitaciones);
-rutas.get("/agregar_hoteles", paginaHotel);
-rutas.post("/agregar_hoteles", agregarHoteles);
-rutas.get("/agregar_gerentes", paginaGerente);
-rutas.post("/agregar_gerentes", AgregarGerentes);
+
+//Desplegar interfaz
 rutas.get("/gestion_hoteles", paginaGestionHoteles);
 rutas.get("/gestion_habitaciones", paginaGestionHabitaciones);
+rutas.get("/gestion_gerentes", paginaGestionGerentes);
+
+//Modificar
+rutas.get("/modificar_hoteles", modificarHoteles);
+rutas.get("/modificar_habitaciones", modificarHabitaciones);
+rutas.get("/modificar_gerentes", modificarGerentes);
+
+//Eliminar
+rutas.get("/eliminar_hoteles", eliminarHoteles);
+rutas.get("/eliminar_habitaciones", eliminarHabitaciones);
+rutas.get("/eliminar_gerentes", eliminarGerentes)
+
+//Crear
+rutas.post("/gestion_hoteles", agregarHoteles);
+rutas.post("/gestion_habitaciones", guardarHabitaciones);
+rutas.post("/gestion_gerentes", guardarGerentes);
 
 export default rutas;

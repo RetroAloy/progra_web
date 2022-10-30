@@ -1,22 +1,25 @@
-import  Sequelize  from "sequelize";
-import db from "../config/db.js";
+import Sequelize from "sequelize";
+import db from '../config/db.js';
 
 export const Hoteles = db.define('hoteles',{
     id_htl: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-      },
+        primaryKey:true,
+        autoIncrement: true
+    },
     nombre:{
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     },
     direccion:{
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     },
     telefono:{
-        type:Sequelize.STRING
+        type: Sequelize.STRING
     },
-    correo:{
-        type:Sequelize.STRING
+    correo: {
+        type: Sequelize.STRING
+    },
+    id_grt: {
+        type: Sequelize.INTEGER
     }
 }, {timestamps:false});

@@ -1,21 +1,18 @@
-import { Hoteles } from "../models/hoteles.js";
-import { Gerentes } from "../models/gerentes.js";
-import { Habitaciones } from "../models/habitaciones.js";
+import { Gerentes } from "../models/gerentes.js"
+import { Habitaciones } from "../models/habitaciones.js"
+import { Hoteles } from "../models/hoteles.js"
 
-function relacionHotelGerente(){
-    Hoteles.hasOne(Gerentes, {foreignKey:"id_htl"});
-    Gerentes.belongsTo(Hoteles, {foreignKey:"id_htl"});
+function relacionHotelGerente() {
+    Hoteles.belongsTo(Gerentes, {foreignKey: "id_grt"});
+    Gerentes.hasOne(Hoteles, {foreignKey: "id_grt"});
 }
 
-function relacionHotelHabitacion(){
+function relacionHotelHabitaciones() {
     Habitaciones.belongsTo(Hoteles, {foreignKey:"id_htl"});
     Hoteles.hasMany(Habitaciones, {foreignKey:"id_htl"});
 }
 
-
 export {
-    Hoteles,
-    Gerentes,
     relacionHotelGerente,
-    relacionHotelHabitacion
+    relacionHotelHabitaciones
 }
